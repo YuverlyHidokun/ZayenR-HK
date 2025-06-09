@@ -12,9 +12,8 @@ export const Home = () => {
             <header className="container mx-auto h-40 text-center py-4 md:flex justify-between items-center px-4 md:h-15">
                 <div className="flex items-center gap-4 my-2">
                   <img src="frontend/Public/epn.png" alt="Logo EPN" className="h-14 w-auto" />
-                  <img src="frontend/Public/museo.png" alt="Logo Museo" className="h-14 w-auto" />
                   <h1 className='font-bold text-2xl text-teal-800'>
-                    Museo <span className='text-green-700'>Gustavo Orcés</span>
+                    MUSEO <span className='text-green-700'>GUSTAVO ORCÉS</span>
                   </h1>
                 </div>
 
@@ -29,21 +28,25 @@ export const Home = () => {
                     <h1 className='font-extrabold text-teal-800 uppercase text-4xl my-4 md:text-6xl'>Patrimonio Científico</h1>
                     <p className='font-bold text-left my-8 md:text-2xl underline'>Inspirando a través del conocimiento</p>
                     <p className='text-2xl my-6 font-sans'>Exposiciones permanentes, visitas guiadas, talleres educativos y más...</p>
+                    <div className='md:w-1/2 flex justify-center'>
+                      <img src="frontend/Public/museo.png" alt="Logo Museo" className="w-64 h-auto object-contain"/>
+    </div>
                 </div>
             </main>
 
             <section className='container mx-auto px-4'>
                 <div className='container mx-auto relative mt-6'>
                     <h2 className='font-semibold text-3xl relative z-1 w-50 text-center mx-auto bg-white'>SOBRE NOSOTROS</h2>
-                    <div className='text-green-700 border-2 absolute top-1/2 w-full z-0' />
+                    <div className='text-green-700 border-t-2 w-full absolute top-full mt-2 left-0 z-0' />
                 </div>
 
                 <div className='my-10 flex flex-col gap-10 items-center sm:flex-row sm:justify-around sm:items-center'>
                     <div className='px-10 sm:w-3/4 text-center sm:text-left'>
                         <p className='my-4'>
-                            El Museo Gustavo Orcés es un espacio dedicado a la ciencia y la historia natural del Ecuador. Nuestro objetivo es educar,
-                            inspirar y conectar a los visitantes con la riqueza biológica y paleontológica del país a través de experiencias
-                            inmersivas y actividades didácticas.
+                            El Museo de Historia Natural “Gustavo Orcés V.” (MHNGOV) tiene la misión de educar para la conservación a través de la educación ambiental, la investigación y la vinculación con la comunidad.
+                            El museo fue creado respondiendo a la necesidad de tener un espacio interactivo para realizar actividades de educación ambiental, divulgación científica, e integrar la importancia de las colecciones científicas en el público en general.
+                            Actualmente el museo cuenta con una sala del pasado donde se narra desde los inicios del planeta tierra hasta la evolución de la especie humana, poniendo énfasis en el desarrollo de la paleontología en nuestro país; en la sala del presente 
+                            se encuentran las representaciones de los ecosistemas y es donde se abordan temas relacionados con los esfuerzos de conservación de la biodiversidad y sus retos, y un espacio de biblioteca infantil.
                         </p>
                         <ul className='space-y-4 mt-6'>
                             <li><MdMuseum className='inline text-2xl mr-2' />Exhibiciones Permanentes</li>
@@ -57,7 +60,7 @@ export const Home = () => {
             <section className='container mx-auto px-4'>
                 <div className='container mx-auto relative mt-6'>
                     <h2 className='font-semibold text-3xl relative z-1 w-50 text-center mx-auto bg-white'>SERVICIOS</h2>
-                    <div className='text-green-700 border-2 absolute top-1/2 w-full z-0' />
+                    <div className='text-green-700 border-t-2 w-full absolute top-full mt-2 left-0z-0' />
                 </div>
 
                 <div className='my-10 flex justify-between flex-wrap gap-5'>
