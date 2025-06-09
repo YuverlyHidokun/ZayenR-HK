@@ -7,7 +7,7 @@ const pasanteSchema = new Schema({
         required: true,
         trim: true
     },
-    correo: {
+    email: {
         type: String,
         required: true,
         trim: true,

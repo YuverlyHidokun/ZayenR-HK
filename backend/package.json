@@ -4,9 +4,9 @@
   "type": "module",
   "description": "",
   "main": "index.js",
-"scripts": {
-    "start":"node src/index.js",
-    "dev":"node --watch src/index.js"
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +21,8 @@
     "fs-extra": "^11.3.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.15.0",
+    "multer": "^2.0.1",
+    "multer-storage-cloudinary": "^4.0.0",
     "nodemailer": "^7.0.3",
     "socket.io": "^4.8.1",
     "stripe": "^18.1.1"

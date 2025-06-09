@@ -5,6 +5,6 @@ import connection from './database.js'
 connection()
 
 app.listen(app.get('port'),()=>{
-    console.log("-----> server on")
+    console.log("-----> Servido en Funcionamiento")
 })
 

@@ -6,7 +6,7 @@ import {
   recuperarPassword,
   comprobarTokenPassword,
   crearNuevoPassword
-} from '../controllers/pasanteController.js'
+} from '../controllers/pasante_controller.js'
 
 const router = express.Router()
 

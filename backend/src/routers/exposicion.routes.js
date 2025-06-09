@@ -7,7 +7,7 @@ import {
   obtenerExposicion,
   actualizarExposicion,
   eliminarExposicion
-} from '../controllers/exposicionController.js'
+} from '../controllers/exposicion_controller.js'
 
 const router = express.Router()
 

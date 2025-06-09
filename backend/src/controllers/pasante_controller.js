@@ -4,24 +4,39 @@ import generarJWT from '../helpers/crearJWT.js'
 
 // Registro de pasante
 const registro = async (req, res) => {
-  const { email, password } = req.body
-  if (Object.values(req.body).includes("")) {
-    return res.status(400).json({ msg: "Todos los campos son obligatorios" })
+  try {
+    const { nombre, email, password, facultad, celular, rol } = req.body;
+
+    // Validaciones por campo
+    if (!nombre || !email || !password || !facultad || !celular) {
+      return res.status(400).json({ msg: "Todos los campos son obligatorios" });
+    }
+
+    const emailExiste = await Pasante.findOne({ email });
+    if (emailExiste) {
+      return res.status(400).json({ msg: "El correo ya está registrado" });
+    }
+
+    const nuevoPasante = new Pasante({
+      nombre,
+      email,
+      password: await Pasante.prototype.encrypPassword(password),
+      facultad,
+      celular,
+      rol
+    });
+
+    const token = nuevoPasante.crearToken();
+    await sendMailToRegister(email, token);
+    await nuevoPasante.save();
+
+    res.status(200).json({ msg: "Revisa tu correo electrónico para confirmar tu cuenta" });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: "Error del servidor al registrar pasante" });
   }
-
-  const emailExiste = await Pasante.findOne({ email })
-  if (emailExiste) {
-    return res.status(400).json({ msg: "El correo ya está registrado" })
-  }
-
-  const nuevoPasante = new Pasante(req.body)
-  nuevoPasante.password = await nuevoPasante.encrypPassword(password)
-  const token = nuevoPasante.crearToken()
-  await sendMailToRegister(email, token)
-  await nuevoPasante.save()
-
-  res.status(200).json({ msg: "Revisa tu correo electrónico para confirmar tu cuenta" })
-}
+};
 
 const login = async (req, res) => {
   const { email, password } = req.body

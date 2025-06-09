@@ -4,8 +4,8 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 
 // Rutas importadas
-import routerPasantes from './routers/pasante_routers.js'
-import routerExposiciones from './routers/exposicion_routers.js'
+import routerPasantes from './routers/pasante.routes.js'
+import routerExposiciones from './routers/exposicion.routes.js'
 
 const app = express()
 dotenv.config()
@@ -13,7 +13,7 @@ dotenv.config()
 // Configuraciones
 app.set('port', process.env.PORT || 3000)
 app.use(cors())
-app.use(express.json()) // Para recibir JSON en las peticiones
+app.use(express.json());
 
 // Ruta base
 app.get('/', (req, res) => {
