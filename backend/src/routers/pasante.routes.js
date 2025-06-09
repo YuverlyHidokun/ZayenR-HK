@@ -11,21 +11,21 @@ import {
 const router = express.Router()
 
 //Login del pasante
-router.post('/login', login)
+router.post('/login', login)//OK
 
 // Registro de pasante
-router.post('/registro', registro)
+router.post('/registro', registro)//OK
 
 // Confirmar email
-router.get('/confirmar/:token', confirmarMail)
+router.get('/confirmar/:token', confirmarMail)//OK
 
 // Recuperar contraseña
-router.post('/recuperar-password', recuperarPassword)
+router.post('/recuperar-password', recuperarPassword)//OK
 
 // Comprobar token para crear nueva contraseña
-router.get('/recuperar-password/:token', comprobarTokenPassword)
+router.get('/recuperar-password/:token', comprobarTokenPassword)//OK
 
 // Crear nueva contraseña
-router.post('/recuperar-password/:token', crearNuevoPassword)
+router.post('/recuperar-password/:token', crearNuevoPassword)//OK
 
 export default router

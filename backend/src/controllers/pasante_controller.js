@@ -42,9 +42,10 @@ const login = async (req, res) => {
   const { email, password } = req.body
 
   // Validar campos vacíos
-  if (Object.values(req.body).includes("")) {
-    return res.status(400).json({ msg: "Todos los campos son obligatorios" })
-  }
+    if (!email || !password) {
+      return res.status(400).json({ msg: "Todos los campos son obligatorios" });
+    }
+
 
   // Buscar pasante en la base de datos
   const pasante = await Pasante.findOne({ email })
@@ -96,8 +97,9 @@ const confirmarMail = async (req, res) => {
 // Recuperar password
 const recuperarPassword = async (req, res) => {
   const { email } = req.body
-  if (Object.values(req.body).includes("")) {
-    return res.status(400).json({ msg: "Todos los campos son obligatorios" })
+  
+  if (!email) {
+      return res.status(400).json({ msg: "Todos los campos son obligatorios" });
   }
 
   const pasante = await Pasante.findOne({ email })
@@ -128,8 +130,8 @@ const crearNuevoPassword = async (req, res) => {
   const { password, confirmPassword } = req.body
   const { token } = req.params
 
-  if (Object.values(req.body).includes("")) {
-    return res.status(400).json({ msg: "Todos los campos son obligatorios" })
+  if (!password || !confirmPassword) {
+      return res.status(400).json({ msg: "Todos los campos son obligatorios" });
   }
 
   if (password !== confirmPassword) {
