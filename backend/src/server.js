@@ -2,41 +2,31 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
-import routerVeterinarios from './routers/veterinario_routers.js'
 
+// Rutas importadas
+import routerPasantes from './routers/pasante_routers.js'
+import routerExposiciones from './routers/exposicion_routers.js'
 
-
-//  Incializaciones 
 const app = express()
 dotenv.config()
-
 
 // Configuraciones
 app.set('port', process.env.PORT || 3000)
 app.use(cors())
+app.use(express.json()) // Para recibir JSON en las peticiones
 
-// Middleware
-app.use(express.json())
-
-
-// Rutas
-app.get('/',(req,res)=>{
-    res.send("Sever on")
+// Ruta base
+app.get('/', (req, res) => {
+    res.send("Servidor del Museo Gustavo Orcés funcionando correctamente 🏛️")
 })
 
-// Rutas para veterinarios
-app.use('/museo',routerVeterinarios)
+// Rutas definidas
+app.use('/api/pasantes', routerPasantes)
+app.use('/api/exposiciones', routerExposiciones)
 
-// Rutas que no existen
-app.use((req,res)=>{res.status(404).send("Endpoint no encontrado")})
+// Middleware para rutas no encontradas
+app.use((req, res) => {
+    res.status(404).json({ msg: "Endpoint no encontrado" })
+})
 
-
-
-
-
-// Exportar la instancia de express
 export default app
-
-
-
-

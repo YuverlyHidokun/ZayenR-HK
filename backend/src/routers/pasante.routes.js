@@ -1,6 +1,7 @@
 import express from 'express'
 import {
   registro,
+  login,
   confirmarMail,
   recuperarPassword,
   comprobarTokenPassword,
@@ -8,6 +9,9 @@ import {
 } from '../controllers/pasanteController.js'
 
 const router = express.Router()
+
+//Login del pasante
+router.post('/login', login)
 
 // Registro de pasante
 router.post('/registro', registro)
