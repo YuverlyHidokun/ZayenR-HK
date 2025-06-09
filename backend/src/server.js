@@ -28,5 +28,15 @@ app.use('/api/exposiciones', routerExposiciones)
 app.use((req, res) => {
     res.status(404).json({ msg: "Endpoint no encontrado" })
 })
+/*
+// Middleware de manejo de errores
+app.use((err, req, res, next) => {
+  console.error('Manejo global de error:', err);
+  res.status(err.status || 500).json({
+    msg: err.message || 'Error inesperado',
+    error: err
+  });
+});
+*/
 
 export default app

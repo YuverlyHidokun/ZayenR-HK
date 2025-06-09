@@ -11,21 +11,25 @@ const exposicionSchema = new Schema({
     required: true,
     trim: true
   },
-  imagenUrl: {
-    type: String,
-    required: true
+  imagen: {
+    url: {
+      type: String,
+      required: true
+    },
+    public_id: {
+      type: String,
+      required: true
+    }
   },
-  imagenId: {
-    type: String, // public_id de Cloudinary para borrar si se necesita
-    required: true
-  },
-  audioUrl: {
-    type: String,
-    required: true
-  },
-  audioId: {
-    type: String,
-    required: true
+  audio: {
+    url: {
+      type: String,
+      required: true
+    },
+    public_id: {
+      type: String,
+      required: true
+    }
   },
   creadoPor: {
     type: Schema.Types.ObjectId,

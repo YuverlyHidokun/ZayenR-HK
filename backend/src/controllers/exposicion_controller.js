@@ -3,21 +3,19 @@ import { deleteFileFromCloudinary } from '../utils/cloudinary.js';
 
 const crearExposicion = async (req, res) => {
     try {
-        const { nombre, descripcion } = req.body
+        const { nombre, descripcion } = req.body;
 
-        // Validación de campos obligatorios
         if (!nombre || !descripcion) {
-            return res.status(400).json({ msg: "Todos los campos son obligatorios" })
+            return res.status(400).json({ msg: "Todos los campos son obligatorios" });
         }
 
-        // Verificar que se subieron los archivos
+        console.log('REQ FILES:', req.files);
         if (!req.files?.imagen || !req.files?.audio) {
-            return res.status(400).json({ msg: "Debes subir una imagen y un audio" })
+            return res.status(400).json({ msg: "Debes subir una imagen y un audio" });
         }
 
-        // Acceder a los archivos subidos por multer con Cloudinary
-        const imagen = req.files.imagen[0]
-        const audio = req.files.audio[0]
+        const imagen = req.files.imagen[0];
+        const audio = req.files.audio[0];
 
         const nuevaExposicion = new Exposicion({
             nombre,
@@ -29,17 +27,23 @@ const crearExposicion = async (req, res) => {
             audio: {
                 url: audio.path,
                 public_id: audio.filename
-            }
-        })
+            },
+            creadoPor: req.user?.id || '68465dcebf8e27168b67c6a1' // cambia por el ID real si es necesario
+        });
 
-        await nuevaExposicion.save()
-        res.status(201).json(nuevaExposicion)
-
+        await nuevaExposicion.save();
+        res.status(201).json(nuevaExposicion);
     } catch (error) {
-        console.error(error)
-        res.status(500).json({ msg: "Error al crear la exposición" })
+        console.error("Error al crear exposición:", error);
+        res.status(500).json({
+            msg: "Error al crear la exposición",
+            error: error.message,
+            stack: error.stack
+        });
     }
-}
+};
+
+
 
 const obtenerExposiciones = async (req, res) => {
     try {
@@ -107,15 +111,13 @@ const eliminarExposicion = async (req, res) => {
         const exposicion = await Exposicion.findById(req.params.id)
         if (!exposicion) return res.status(404).json({ msg: "Exposición no encontrada" })
 
-        // Eliminar archivos de Cloudinary
         if (exposicion.imagen?.public_id) {
-            await deleteFileFromCloudinary(exposicion.imagen.public_id)
+            await deleteFileFromCloudinary(exposicion.imagen.public_id, 'image')
         }
 
         if (exposicion.audio?.public_id) {
-            await deleteFileFromCloudinary(exposicion.audio.public_id)
+            await deleteFileFromCloudinary(exposicion.audio.public_id, 'raw') // porque es audio
         }
-
         await exposicion.deleteOne()
         res.status(200).json({ msg: "Exposición eliminada correctamente" })
 
