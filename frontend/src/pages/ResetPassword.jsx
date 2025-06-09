@@ -8,7 +8,7 @@ export const ResetPassword = () => {
 
   useEffect(() => {
     // Validar el token
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/auth/validate-token/${token}`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/pasantes/recuperar-password/${token}`)
       .then((res) => {
         if (!res.ok) throw new Error('Token inválido');
         return res.json();
@@ -44,7 +44,7 @@ export const ResetPassword = () => {
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-green-50 p-8">
       <img
-        src="/src/assets/success.png"
+        src="/src/assets/dino2.jpg"
         alt="Token validado"
         className="w-48 h-48 mb-8"
       />

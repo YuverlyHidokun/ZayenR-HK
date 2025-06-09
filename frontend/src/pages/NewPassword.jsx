@@ -22,22 +22,23 @@ export const NewPassword = () => {
     }
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/auth/recuperar-password/${token}`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/pasantes/recuperar-password/${token}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({ password, confirmPassword: repeatPassword }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.message || 'Error al actualizar la contraseña');
+        throw new Error(data.msg || 'Error al actualizar la contraseña');
       }
 
       setSuccess(true);
       setError('');
-      setTimeout(() => navigate('/login'), 2500); // redirige tras 2.5 seg
+      setTimeout(() => navigate('/login'), 2500); // Redirige después de 2.5 segundos
     } catch (err) {
       setError(err.message);
     }
