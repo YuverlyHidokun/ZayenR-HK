@@ -159,7 +159,7 @@ export const Register = () => {
       {/* Imagen al lado derecho */}
       <div className="w-1/2 hidden md:block">
         <img
-          src="src/assets/dino2.jpg"
+          src="src/assets/dino-repair.png"
           alt="Registro Museo"
           className="w-full h-full object-cover"
         />
